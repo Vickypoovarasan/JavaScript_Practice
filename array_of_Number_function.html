@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Documet</title>
+</head>
+<body>
+	<h2>Find the number In array which is greater than 50 Using Function</h2>
+</body>
+<script>
+
+	document.write("This is Scripting Language");
+	document.write("<br>");
+	function number (nums)
+	{
+		nums.forEach(num => {
+			if (num > 50) {
+				document.write("greater than above 50 : " + num);
+				document.write("</br>");
+			}
+		});
+	}
+	let array = number([30, 60, 20, 70, 80]);
+	document.write(array);
+</script>
+</html>

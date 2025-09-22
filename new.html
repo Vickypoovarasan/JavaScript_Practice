@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Filter Users by Age</title>
+</head>
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 20px;
+    }
+</style>
+<body>
+  <h2>Users Above Age 25</h2>
+<script>
+    const Users = [
+        {name : "Sanjay", age : 20},
+        {name : "Ramesh", age : 30},
+        {name : "Mahesh", age : 26},
+        {name : "Suresh", age : 24}
+    ];
+
+    const filteredUsers = users.filter(user => user.age > 25);
+    document.write("<p><b>All Users:</b><br>");
+    users.forEach(user =>
+    {
+        document.write(user.name + " (Age: " + user.age + ")<br>");
+    });
+    document.write("</p>");
+    document.write("<p><b>Filtered (Age > 25):</b><br>");
+    filteredUsers.forEach(user => {
+      document.write(user.name + " (Age: " + user.age + ")<br>");
+    });
+    document.write("</p>");
+
+  
+  </script>
+</body>
+</html>

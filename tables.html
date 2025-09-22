@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Multiplication Tables Using for Loop</h2>
+</body>
+<script>
+    function table(t, n) {
+        for (let i = 1; i <= n; i++) {
+            document.write("<br>")
+            document.write(t + "*" + i + "=" + (t*i));
+        }
+        
+    };
+    console.log(table(2, 20));
+    document.write("</br>")
+    console.log(table(5, 10));
+</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Object in Js and Find The Marks Is pass or fail</h1>
+</body>
+    <script>
+        // let Student = {
+        //     name : "Vicky",
+        //     age : 21,
+        //     mark : 20
+        // };
+
+        // if (Student.mark >=30){
+        //     document.write(Student.name+ " you are Pass");
+        // }
+        // else{
+        //     document.write(Student.name+ "  you are Fail");
+        // }
+
+        function Student(name, age, mark)
+        {
+            this.name = name;
+            this.age = age;
+            this.mark = mark;
+        };
+
+        let student1 = new Student("Vicky", 21, 30);
+
+        if (student1.mark >= 30){
+            document.write(student1.name+ " you are Pass");
+            
+        } else {
+            document.write(student1.name+ " you are Fail");
+        }
+
+    </script>
+</html>

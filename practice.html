@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Student Details</h2>
+  </body>
+  <script>
+    var Users = [
+      { name: "Vicky", age: 20, city: "Vellore" },
+      { name: "Sanjay", age: 21, city: "Vellore" },
+      { name: "Pavan", age: 30, city: "Vellore" },
+      { name: "Naveen", age: 20, city: "Vellore" },
+      { name: "Rudra", age: 23, city: "Vellore" },
+    ];
+
+    // const Filter_User = Users.filter((User) => User.age >= 21);
+    document.write("<p><br> All Users</br></p>");
+    Users.forEach((Users) => {
+      document.write(
+        "User_Name : " +
+          Users.name +
+          ", User_Age : " +
+          Users.age +
+          ", User_City : " +
+          Users.city +
+          "</p></br>"
+      );
+    });
+    document.write("</p>");
+    document.writeln("<br><br> Filters Users</br></p>");
+    Users.forEach((Users) => {
+      if (Users.age >= 21) {
+          document.write(
+        "User_Name : " +
+          Users.name +
+          ", User_Age:  " +
+          Users.age +
+          ", User_City : " +
+          Users.city +
+          "</p></br>"
+      );
+      }
+    });
+  </script>
+</html>
