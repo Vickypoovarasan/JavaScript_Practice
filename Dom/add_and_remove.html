@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Fruits add and remove excersize</h1>
+        <ul id="my_list"><h1>Friuts</h1>
+            <li>Mango</li>
+        </ul>
+        <input id="input_" type="text">
+        <button id="add_btn">Add Button</button>
+        <button id="remove_btn">Remove Button</button>
+</body>
+<script>
+    const my_list = document.getElementById("my_list");
+    const input = document.getElementById("input_");
+    const add_btn = document.getElementById("add_btn");
+    const remove_btn = document.getElementById("remove_btn");
+
+    add_btn.addEventListener("click", () =>{
+        const fruit = input.value.trim();
+        if (!fruit) {
+            alert("Enter the Fruit please...");
+        }
+
+        const li = document.createElement("li");
+        li.textContent = fruit;
+        my_list.appendChild(li);
+        input.value = "";
+    });
+
+    remove_btn.addEventListener("click", () =>{
+        if (my_list.lastElementChild) {
+            my_list.lastElementChild.remove();
+        } else {
+            alert("The list is Empty. Please add the fruit")
+        }
+    })
+</script>
+</html>

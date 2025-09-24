@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add color of List and also try to change color </h1>
+    <ul id="list">Colors
+        <li>Green</li>
+    </ul>
+    <input type="text" name="" id="input_color">
+    <button id="add_btn">Add color</button>
+</body>
+<script>
+    const list = document.getElementById("list");
+    const input = document.getElementById("input_color");
+    const btn = document.getElementById("add_btn");
+
+    btn.addEventListener("click", () =>{
+        const color = input.value.trim();
+        if (!color) {
+            alert("Please Enter the color..");
+        }
+
+        const li = document.createElement("li");
+        li.textContent = color;
+        li.style.color = color;
+        
+        list.appendChild(li);
+        input.value = "";
+    })
+</script>
+</html>

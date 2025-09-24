@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    h1{
+        display: ruby-base;
+    }
+  </style>
+  <body>
+    <h1>Show and Hide The Paragraph..</h1>
+
+    <p id="para">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis qui
+      ea rem at. Modi officia reiciendis voluptatem quos odio distinctio fugit?
+      Corrupti consequatur velit dolores eveniet error molestias debitis
+      commodi?
+    </p>
+    <button id="hide-btn">Hide</button>
+    <button id="show-again-btn">Show Again</button>
+  </body>
+  <script>
+    let para = document.getElementById("para");
+    let hide = document.getElementById("hide-btn");
+    let show = document.getElementById("show-again-btn");
+
+    hide.addEventListener("click", () =>{
+        para.style.display = "none";
+    });
+
+    show.addEventListener("click", () =>{
+        para.style.display = "block";
+        para.style.color = "Red";
+    });
+  </script>
+</html>

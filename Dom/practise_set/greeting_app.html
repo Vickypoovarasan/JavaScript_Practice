@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Greeting App</h1>
+
+    <input type="text" id="input">
+    <button id="btn">Say Hello</button>
+    <input type="text" id="input-1">
+</body>
+<script>
+    const input = document.getElementById("input");
+    const input_1 = document.getElementById("input-1");
+    const btn = document.getElementById("btn");
+
+    btn.addEventListener("click", () =>{
+        const name = input.value.trim();
+        input_1.value = `Hello, ${name}!`
+        input.value = "";
+        // alert(`Hello, ${name}!`);
+    });
+</script>
+</html>

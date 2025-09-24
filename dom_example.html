@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Manager — DOM & Events</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 18px; max-width: 700px; margin: auto; }
+    .card { border: 1px solid #ddd; padding: 12px; border-radius: 8px; margin-bottom: 12px; }
+    label { display:block; margin-top:8px; }
+    input[type="text"], input[type="number"] { width: 100%; padding:6px; margin-top:4px; box-sizing: border-box; }
+    button { margin-top:8px; padding:8px 12px; cursor:pointer; }
+    ul { list-style: none; padding-left: 0; }
+    li { padding:8px 6px; border-bottom: 1px dashed #eee; display:flex; justify-content:space-between; align-items:center; }
+    .small { font-size:0.9rem; color:#555; }
+    .remove-btn { background: #ff6b6b; color: white; border: none; padding:6px 8px; border-radius:6px; }
+  </style>
+</head>
+<body>
+  <h1>Student Manager</h1>
+
+  <div class="card" id="addCard">
+    <h3>Add Student</h3>
+    <form id="addForm">
+      <label>
+        Name
+        <input type="text" id="nameInput" required />
+      </label>
+      <label>
+        Age
+        <input type="number" id="ageInput" min="0" required />
+      </label>
+      <label>
+        City
+        <input type="text" id="cityInput" />
+      </label>
+      <button type="submit">Add Student</button>
+    </form>
+  </div>
+
+  <div class="card" id="controlsCard">
+    <h3>Controls</h3>
+    <label>
+      Show students with age ≥
+      <input type="number" id="ageFilterInput" placeholder="Leave empty for all" min="0" />
+    </label>
+    <button id="applyFilterBtn">Apply Filter</button>
+    <button id="clearFilterBtn">Clear Filter</button>
+  </div>
+
+  <div class="card">
+    <h3>Students</h3>
+    <ul id="studentList"></ul>
+  </div>
+
+  <script>
+    // state (array of students)
+    const students = [
+      { name: "Vicky", age: 20, city: "Vellore" },
+      { name: "Sanjay", age: 21, city: "Vellore" },
+      { name: "Pavan", age: 30, city: "Vellore" },
+      { name: "Naveen", age: 20, city: "Vellore" },
+      { name: "Rudra", age: 23, city: "Vellore" },
+      
+    ];
+
+    // DOM refs
+    const studentList = document.getElementById("studentList");
+    const addForm = document.getElementById("addForm");
+    const nameInput = document.getElementById("nameInput");
+    const ageInput = document.getElementById("ageInput");
+    const cityInput = document.getElementById("cityInput");
+    const ageFilterInput = document.getElementById("ageFilterInput");
+    const applyFilterBtn = document.getElementById("applyFilterBtn");
+    const clearFilterBtn = document.getElementById("clearFilterBtn");
+
+    // current filter value (null = no filter)
+    let currentFilterAge = null;
+
+    // Renders the list from the students array and current filter
+    function renderList() {
+      studentList.innerHTML = ""; // clear list
+
+      students.forEach((student, index) => {
+        // if filter is active and student doesn't match, skip
+        if (currentFilterAge !== null && student.age < currentFilterAge) return;
+
+        const li = document.createElement("li");
+
+        // left content
+        const left = document.createElement("div");
+        left.innerHTML = `<strong>${escapeHtml(student.name)}</strong> <span class="small">(${student.age} yrs) - ${escapeHtml(student.city)}</span>`;
+
+        // right content (remove button)
+        const right = document.createElement("div");
+        const removeBtn = document.createElement("button");
+        removeBtn.className = "remove-btn";
+        removeBtn.textContent = "Remove";
+        // store index using data attribute (recomputed on every render)
+        removeBtn.dataset.index = index;
+        right.appendChild(removeBtn);
+
+        li.appendChild(left);
+        li.appendChild(right);
+        studentList.appendChild(li);
+      });
+
+      // if empty
+      if (studentList.children.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "No students to show.";
+        studentList.appendChild(li);
+      }
+    }
+
+    // simple escape to avoid injecting HTML from user input when using innerHTML
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    // handle add form submit
+    addForm.addEventListener("submit", (e) => {
+      e.preventDefault(); // stop real form submission
+
+      const name = nameInput.value.trim();
+      const age = Number(ageInput.value);
+      const city = cityInput.value.trim() || "Unknown";
+
+      if (!name) {
+        alert("Please enter a name.");
+        return;
+      }
+      if (!Number.isFinite(age) || age < 0) {
+        alert("Please enter a valid age.");
+        return;
+      }
+
+      // add to array and re-render
+      students.push({ name, age, city });
+      addForm.reset();
+      renderList();
+    });
+
+    // event delegation: handle remove clicks from the list
+    studentList.addEventListener("click", (e) => {
+      const target = e.target;
+      if (target.matches(".remove-btn")) {
+        const idx = Number(target.dataset.index);
+        if (!Number.isNaN(idx)) {
+          students.splice(idx, 1); // remove from array
+          renderList();           // re-render (indexes recomputed)
+        }
+      }
+    });
+
+    // filter controls
+    applyFilterBtn.addEventListener("click", () => {
+      const val = ageFilterInput.value.trim();
+      currentFilterAge = val === "" ? null : Number(val);
+      if (currentFilterAge !== null && (!Number.isFinite(currentFilterAge) || currentFilterAge < 0)) {
+        alert("Enter a valid filter age (>= 0)");
+        return;
+      }
+      renderList();
+    });
+
+    clearFilterBtn.addEventListener("click", () => {
+      ageFilterInput.value = "";
+      currentFilterAge = null;
+      renderList();
+    });
+
+    // initial render
+    renderList();
+  </script>
+</body>
+</html>

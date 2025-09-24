@@ -1,3 +1,11 @@
+const para = document.getElementById("para");
+const button = document.getElementById("colorbtn");
+
+button.addEventListener("click", () =>{
+    para.style.color = "red";
+});
+
+
 //basic level of question
 
 // store and print

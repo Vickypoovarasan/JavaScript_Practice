@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alert example</title>
+  </head>
+    <style>
+      #btn {
+        background-color: aqua;
+        border: none;
+        border-radius: 10px;
+        width: 200px;
+        height: 100px;
+      }
+      #btn:hover {
+        background: #000;
+        color: white;
+        transition: 500ms;
+        transition-delay: 100ms;
+      }
+    </style>
+<body>
+    <h2>Example of Button alert meassge</h2>
+    <button id="btn_1" class="btn">Non click</button>
+
+    <h1 id="heading">Hello</h1>
+    <button id="btn_2">Click Me</button>
+    <button id="clear_btn">Clear Me</button>
+
+    <p id="para">this is my paragraph
+    </p>
+    <button id="btn_3">change color Me</button>
+    <button id="btn_4">change color Me</button>
+
+    <ul id="my_list">Fruits
+      <li>Apple</li>
+      <li>Orange</li>
+      <li>Mango</li>
+    </ul>
+    <!-- <input id="input" type="text"> -->
+    <button id="add_btn">Add Fruits</button>
+    <button id="remove_btn">Remove Fruits</button>
+</body>
+<script>
+
+    let btn_1 = document.getElementById("btn_1");
+    let heading = document.getElementById("heading");
+    let btn_2 = document.getElementById("btn_2");
+    let clear_btn = document.getElementById("clear_btn")
+    let para = document.getElementById("para");
+    let btn_3 = document.getElementById("btn_3");
+    let btn_4 = document.getElementById("btn_4");
+    let my_list = document.getElementById("my_list");
+    let add_btn = document.getElementById("add_btn");
+    let remove_btn = document.getElementById("remove_btn");
+    // let input = document.getElementById("input")
+
+// Add Friuts Example....
+
+  add_btn.addEventListener("click", () =>
+{
+  let li = document.createElement("li");
+
+  li.textContent = "Pine Apple";
+  li.textContent = "Pine Apple";
+  li.textContent = "Pine Apple";
+  my_list.appendChild(li);
+
+  remove_btn.addEventListener("click", () =>
+{
+  my_list.remove();
+});
+});
+
+//alert Message...
+
+  btn_1.addEventListener("click", () =>
+  {
+    alert("Inavalid Password");
+  });
+
+// Text only change...
+  btn_2.addEventListener("click", () =>
+{
+  heading.textContent = "Hello is change  into Hello World";
+});
+
+clear_btn.addEventListener("click", () =>
+{
+  heading.textContent = "";
+});
+
+// Text color chnage....
+
+  btn_3.addEventListener("click", () =>
+{
+  para.style.color = "red";
+});
+  btn_4.addEventListener("click", () =>
+{
+  para.style.color = "green";
+});
+  
+</script>
+  
+</html>
