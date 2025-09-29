@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Age calculator problem...</h1>
+    <input type="number" placeholder="Enter you Birth Year" id="input">
+    <button id="btn">Age calculate</button>
+    <p id="message"></p>
+</body>
+<script>
+    const input = document.getElementById("input");
+    const btn = document.getElementById("btn");
+    const message = document.getElementById("message");
+
+    btn.addEventListener("click", () =>{
+        // let today = new Date();
+        let current_year = new Date().getFullYear();
+        const year = input.value.trim();
+
+        message.textContent = current_year - year;
+        
+    });
+</script>
+</html>

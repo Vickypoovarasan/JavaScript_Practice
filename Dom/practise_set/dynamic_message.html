@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Dynamic Message problem...</h1>
+    <input type="text" placeholder="Enter your Food" id="food-input">
+    <input type="text" placeholder="Enter your Drink" id="drink-input">
+    <button id="btn">Order</button>
+    <p id="message"></p>
+</body>
+<script>
+    const food_input = document.getElementById("food-input");
+    const drink_input = document.getElementById("drink-input");
+    const btn = document.getElementById("btn");
+    const message = document.getElementById("message");
+
+    btn.addEventListener("click", () =>{
+        const food = food_input.value.trim();
+        const drink = drink_input.value.trim();
+
+        message.textContent = `You ordered ${food} with ${drink}.`
+    });
+</script>
+</html>

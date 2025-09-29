@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="form" novalidate>
+        <label for="name">Name</label>
+        <input type="text" id="name" min="18" max="30" placeholder="Enter you age" required>
+        <span id="nameError"></span>
+        <button type="submit">Submit</button><br><br><br>
+
+        
+    </form>
+</body>
+<script>
+
+    form.addEventListener("submit", (e) =>{
+        e.preventDefault();
+    const form = document.getElementById("form");
+    const name = document.getElementById("name");
+    const nameError = document.getElementById("nameError");
+        if (!name.checkValidity()) {
+            if (name.validity.valueMissing) {
+                nameError.textContent = "Required name please"
+                nameError.style.fontSize = "10px";
+                nameError.style.color = "red";
+                nameError.style.backgroundColor = "white";
+                nameError.style.borderColor = "black";
+                name.style.borderColor = "red"
+            }
+            }
+            else {
+                name.style.borderColor = "";
+            nameError.textContent = "";
+        }
+    });
+</script>
+</html>

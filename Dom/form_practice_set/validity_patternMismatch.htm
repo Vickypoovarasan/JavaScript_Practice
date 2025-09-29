@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Form Validate in patternMismatch property</h1>
+    <form action="" id="form" novalidate>
+      <label for="">Password :</label><br /><br />
+      <input
+        type="password"
+        id="password"
+        pattern="[A-z]{3} [0-9]{3}"
+        placeholder="ABC'@, #, _, -'123"
+      />
+      <span id="passwordError"></span><br /><br />
+      <button>Submit</button><br /><br />
+    </form>
+  </body>
+  <script>
+    const form = document.getElementById("form");
+    const password = document.getElementById("password");
+    const passwordError = document.getElementById("passwordError");
+
+    form.addEventListener("submit", (e) =>{
+        e.preventDefault();
+        if (!password.checkValidity()) {
+            if (password.validity.patternMismatch) {
+                passwordError.textContent = "Password Should be 3latters and 3number";
+            }
+        } else {
+            
+        }
+        
+        
+    })
+  </script>
+</html>

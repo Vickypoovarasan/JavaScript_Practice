@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Google Form Style Validation</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; }
+    input { padding: 8px; width: 250px; }
+    .error { color: red; font-size: 10px; }
+    button { padding: 8px 16px; }
+  </style>
+</head>
+<body>
+  <h2>Create Account</h2>
+  <form id="signupForm" novalidate>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" type="text" required minlength="3">
+      <div id="nameError" class="error"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" required>
+      <div id="emailError" class="error"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" type="password" required minlength="6">
+      <div id="passwordError" class="error"></div>
+    </div>
+
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("signupForm");
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+
+
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault(); // stop page reload
+      let valid = true;
+
+      // Name validation
+      
+      if (!name.checkValidity()) {
+        if (name.validity.valueMissing) {          
+          nameError.textContent = "Name is required.";
+        } else if (name.value.trim().validity.tooShort) {
+          nameError.textContent = "Name must be at least 3 characters.";
+        }
+        valid = false;
+      } else {
+        nameError.textContent = "";
+      }
+
+      // Email validation
+      if (!email.checkValidity()) {
+        if (email.validity.valueMissing) {
+          emailError.textContent = "Email is required.";
+
+        } else if (email.validity.typeMismatch) {
+          emailError.textContent = "Enter a valid email address.";
+        }
+        valid = false;
+      } else {
+        emailError.textContent = "";
+      }
+
+      // Password validation
+      if (!password.checkValidity()) {
+        if (password.validity.valueMissing) {
+          passwordError.textContent = "Password is required.";
+        } else if (password.validity.tooShort) {
+          passwordError.textContent = "Password must be at least 6 characters.";
+        }
+        valid = false;
+      } else {
+        passwordError.textContent = "";
+      }
+
+      // If everything is valid
+      if (valid) {
+        alert("Form submitted successfully!");
+        form.reset(); // clear inputs
+      }
+    });
+  </script>
+</body>
+</html>

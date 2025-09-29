@@ -8,20 +8,31 @@
 <body>
     <h1>Greeting App</h1>
 
-    <input type="text" id="input">
+    <input type="text" id="input" placeholder="Enter you name">
     <button id="btn">Say Hello</button>
-    <input type="text" id="input-1">
+    <p id="message"></p>
 </body>
 <script>
     const input = document.getElementById("input");
-    const input_1 = document.getElementById("input-1");
+    const message = document.getElementById("message");
     const btn = document.getElementById("btn");
+
+    // btn.addEventListener("click", () =>{
+    //     const name = input.value.trim();
+    //     input_1.value = `Hello, ${name}!`
+    //     input.value = "";
+    //     // alert(`Hello, ${name}!`);
+    // });
 
     btn.addEventListener("click", () =>{
         const name = input.value.trim();
-        input_1.value = `Hello, ${name}!`
+        if(name){
+            message.textContent = `Hello, ${name}!`;
+        } else {
+            // message.textContent = `Enter your name`;
+            alert("Enter your name");
+        }
         input.value = "";
-        // alert(`Hello, ${name}!`);
     });
 </script>
 </html>

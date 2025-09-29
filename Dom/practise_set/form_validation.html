@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Form validation...</h1>
+    <form action="" id="my-form" novalidate>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" required minlength="3"><br>
+        <span id="nameError" style="color: red; font-size: 10px; padding-left: 50px;"></span>
+        <br><br>
+        <label for="Email">Email:</label>
+        <input type="text" id="email" required>
+        <span id="emailError" style="color: red; font-size: 10px;"></span>
+        <br><br>
+        <label for="name">Password:</label>
+        <input type="text" id="paassword" required minlength="3">
+        <span id="passwordError" style="color: red; font-size: 10px;"></span>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+<script>
+        const form = document.getElementById("my-form");
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+
+        const nameError = document.getElementById("nameError");
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
+
+        form.addEventListener("submit", (e) =>{
+            e.preventDefault();
+
+            let valid = true;
+
+            if (!name.checkValidity()) {
+                if (name.validity.valueMissing) {
+                    nameError.textContent = "Name required";
+                } else if (name.validity.tooShort) {
+                    nameError.textContent = "Name must be at least 3 character";
+                }
+                valid = false;
+            } else {
+                nameError.textContent = "";
+            }
+
+            if (!email.checkValidity()) {
+                if (email.validity.valueMissing) {
+                    emailError.textContent = "email required";
+                } else if (email.validity.typeMissMatch) {
+                    emailError.textContent = "Enter valid email address";
+                }
+
+                valid = false;
+            } else {
+                emailError.textContent = "";
+            }
+
+        });
+</script>
+</html>

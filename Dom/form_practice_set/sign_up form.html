@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        width: 300px;
+        margin: auto;
+        border: 1px solid black;
+        padding: 20px;
+        box-shadow: 5px 10px #888888;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        background-color: white;
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+    span {
+        color: red;
+        font-size: 12px;
+    }
+</style>
+<body>
+    <div class="container">
+        <form id="form">
+            <div class="form-group">
+                <label for="name">Name :</label>
+                <input type="text" id="name" name="name" >
+                <span id="nameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="eg. Vicky@2004">
+                <span id="passwordError"></span>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+<script>
+    let form = document.getElementById("form");
+    let name = document.getElementById("name");
+    let password = document.getElementById("password");
+
+    let nameError = document.getElementById("nameError");
+    let passwordError = document.getElementById("passwordError");
+ 
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        let valid = true;
+
+        // Name validation
+        if (name.value.trim() === "") {
+            nameError.textContent = "Name is required.";
+            name.style.border = "2px solid red";
+            valid = false;
+        } else if (!/^[a-zA-Z\s]+$/.test(name.value)) {
+            nameError.textContent = "Name can only contain letters and spaces.";
+             name.style.border = "2px solid red";
+            valid = false;
+        } else if (name.value.length < 3) {
+            nameError.textContent = "Name must be at least 3 characters.";
+            name.style.border = "2px solid red";
+            valid = false;
+        }
+        else {
+            nameError.textContent = "";
+            name.style.border = "2px solid green";
+        }
+
+        // Password validation
+        if (password.value.trim() === "") {
+            passwordError.textContent = "Password is required.";
+            password.style.border = "2px solid red";
+            valid = false;
+        } else
+        if (password.value.length < 6) {
+            passwordError.textContent = "Password must be at least 6 characters.";
+            password.style.border = "2px solid red";
+            valid = false;
+        } else if (!/[A-Z]/.test(password.value)) {
+            passwordError.textContent = "Password must contain at least one uppercase letter.";
+            password.style.border = "2px solid red";
+            valid = false;
+        } else if (!/[a-z]/.test(password.value)) {
+            passwordError.textContent = "Password must contain at least one lowercase letter.";
+            password.style.border = "2px solid red";
+            valid = false;
+        }  
+        else if (!/[0-9]/.test(password.value)) {
+            passwordError.textContent = "Password must contain at least one number.";
+            password.style.border = "2px solid red";
+            valid = false;
+        }else {
+            passwordError.textContent = "";
+            password.style.border = "2px solid green";
+        }
+
+        if (valid) {
+            alert("form Submitted");
+            form.reset();
+        }
+    });
+    
+</script>
+</html>

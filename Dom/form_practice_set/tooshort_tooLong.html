@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      placeholder="Enter you name"
+      minlength="3"
+      maxlength="8"
+      required
+    /><br><br>
+    <br>
+    <span id="nameError"></span><br>
+    <button type="submit" onclick="check()">Submit</button>
+  </body>
+  <script>
+    function check() {
+        const username = document.getElementById("username");
+        const nameError = document.getElementById("nameError");
+    
+            if (username.validity.tooShort) {
+                nameError.textContent = "Userrname is to short";
+            } else {
+                nameError.textContent = "UserName is nice";
+            }
+             
+        
+        
+    }
+  </script>
+</html>

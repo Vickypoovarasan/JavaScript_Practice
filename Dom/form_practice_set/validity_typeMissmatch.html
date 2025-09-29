@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Form Validate in typeMissmatch property</h1>
+    <form action="" id="form" novalidate>
+
+        <label for="">Email :</label><br><br>
+        <input type="email" id="email" required>
+            <span id="emailError"></span><br><br>
+        <button>Submit</button><br><br>
+    </form>
+</body>
+<script>
+    const form = document.getElementById("form")
+    const email = document.getElementById("email")
+    const emailError = document.getElementById("emailError")
+    
+    form.addEventListener("submit", (e) =>{
+        e.preventDefault();
+
+        if (!email.checkValidity()) {
+            if (email.validity.typeMismatch) {
+                emailError.textContent = "Please enter the valid email"
+            }
+        }else {
+            emailError.textContent = "";
+        }
+    })
+</script>
+</html>
